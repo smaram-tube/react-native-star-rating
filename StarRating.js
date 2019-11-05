@@ -57,7 +57,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  activeOpacity: 0.2,
+  activeOpacity: 0,
   animation: undefined,
   buttonStyle: {},
   containerStyle: {},
@@ -114,6 +114,8 @@ class StarRating extends Component {
       reversed,
       starSize,
       starStyle,
+      emptyStarType,
+      fullStarType
     } = this.props;
 
     const newContainerStyle = {
@@ -129,10 +131,11 @@ class StarRating extends Component {
     for (let i = 0; i < maxStars; i++) {
       let starIconName = emptyStar;
       let finalStarColor = emptyStarColor;
-
+      let iconType = 'light';
       if (starsLeft >= 1) {
         starIconName = fullStar;
         finalStarColor = fullStarColor;
+        iconType = 'solid'
       } else if (starsLeft === 0.5) {
         starIconName = halfStar;
         if (halfStarColor) {
@@ -168,6 +171,7 @@ class StarRating extends Component {
             starIconName={starIconName}
             starSize={starSize}
             starStyle={starStyle}
+            iconType={iconType}
           />
         </AnimatableView>
       );

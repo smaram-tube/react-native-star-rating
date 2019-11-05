@@ -17,6 +17,7 @@ import MaterialCommunityIconsIcons from 'react-native-vector-icons/MaterialCommu
 import OcticonsIcons from 'react-native-vector-icons/Octicons';
 import ZocialIcons from 'react-native-vector-icons/Zocial';
 import SimpleLineIconsIcons from 'react-native-vector-icons/SimpleLineIcons';
+import IconFontAwesome from "react-native-fontawesome-pro";
 
 const iconSets = {
   Entypo: EntypoIcons,
@@ -50,6 +51,7 @@ const propTypes = {
   activeOpacity: PropTypes.number.isRequired,
   starStyle: ViewPropTypes.style,
   onStarButtonPress: PropTypes.func.isRequired,
+  iconType: PropTypes.string,
 };
 
 const defaultProps = {
@@ -102,11 +104,11 @@ class StarButton extends Component {
       starIconName,
       starSize,
       starStyle,
+      iconType,
     } = this.props;
 
     const Icon = this.iconSetFromProps();
     let iconElement;
-
     const newStarStyle = {
       transform: [{
         scaleX: reversed ? -1 : 1,
@@ -116,13 +118,15 @@ class StarButton extends Component {
 
     if (typeof starIconName === 'string') {
       iconElement = (
-        <Icon
+        <IconFontAwesome
           name={starIconName}
           size={starSize}
           color={starColor}
-          style={newStarStyle}
+          iconStyle={newStarStyle}
+          type={iconType}
         />
       );
+      
     } else {
       const imageStyle = {
         width: starSize,
