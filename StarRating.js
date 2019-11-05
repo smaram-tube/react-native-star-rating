@@ -138,6 +138,7 @@ class StarRating extends Component {
         iconType = 'solid'
       } else if (starsLeft === 0.5) {
         starIconName = halfStar;
+        iconType = 'solid'
         if (halfStarColor) {
           finalStarColor = halfStarColor;
         } else {
